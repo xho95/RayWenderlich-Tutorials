@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16CBB1922696DC4900D66668 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CBB1912696DC4900D66668 /* State.swift */; };
 		1839F4B025190F2A00BB00F1 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839F4AF25190F2A00BB00F1 /* AppMain.swift */; };
 		18D775C522AD944300AE281E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D775C422AD944300AE281E /* ContentView.swift */; };
 		18D775C722AD944400AE281E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C622AD944400AE281E /* Assets.xcassets */; };
@@ -30,7 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1839F4AF25190F2A00BB00F1 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
+		16CBB1912696DC4900D66668 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		1839F4AF25190F2A00BB00F1 /* AppMain.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; tabWidth = 4; };
 		18D775BD22AD944300AE281E /* ThreeDucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreeDucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D775C422AD944300AE281E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		18D775C622AD944400AE281E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16CBB1902696DC2400D66668 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				16CBB1912696DC4900D66668 /* State.swift */,
+			);
+			indentWidth = 4;
+			path = State;
+			sourceTree = "<group>";
+			tabWidth = 4;
+		};
 		18D775B422AD944300AE281E = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				1839F4AF25190F2A00BB00F1 /* AppMain.swift */,
+				16CBB1902696DC2400D66668 /* State */,
 				49FFE1C22608A713009F2416 /* Model */,
 				49FFE1C12608A70C009F2416 /* Views */,
 				49107CCD26171FB400E85A59 /* Assets */,
@@ -111,8 +124,10 @@
 				49D3F03C261850D2004D49D3 /* duck.mp3 */,
 				18D775C622AD944400AE281E /* Assets.xcassets */,
 			);
+			indentWidth = 4;
 			path = Assets;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		49FFE1C12608A70C009F2416 /* Views */ = {
 			isa = PBXGroup;
@@ -126,8 +141,10 @@
 				49FFE1B82608A057009F2416 /* CardBackContentView.swift */,
 				49FFE1BB2608A064009F2416 /* CardFrontContentView.swift */,
 			);
+			indentWidth = 4;
 			path = Views;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		49FFE1C22608A713009F2416 /* Model */ = {
 			isa = PBXGroup;
@@ -140,8 +157,10 @@
 				49107CC326168FF500E85A59 /* ScorePersistence.swift */,
 				49107CC926171D0100E85A59 /* QuackPlayer.swift */,
 			);
+			indentWidth = 4;
 			path = Model;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 /* End PBXGroup section */
 
@@ -249,6 +268,7 @@
 				49FFE1B92608A057009F2416 /* CardBackContentView.swift in Sources */,
 				49FFE1B626089E8E009F2416 /* CardView.swift in Sources */,
 				49DFE83D261540EF00E9C3CF /* Score.swift in Sources */,
+				16CBB1922696DC4900D66668 /* State.swift in Sources */,
 				49107CC426168FF500E85A59 /* ScorePersistence.swift in Sources */,
 				1839F4B025190F2A00BB00F1 /* AppMain.swift in Sources */,
 				49DC5FEE260F237400D17454 /* Animal.swift in Sources */,
