@@ -11,6 +11,8 @@
 		16CBB1942696E36000D66668 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CBB1932696E36000D66668 /* Store.swift */; };
 		16CBB1972697023F00D66668 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CBB1962697023F00D66668 /* Actions.swift */; };
 		16CBB1992697051600D66668 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CBB1982697051600D66668 /* Reducer.swift */; };
+		16CBB19D2697467E00D66668 /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CBB19C2697467E00D66668 /* Middleware.swift */; };
+		16CBB19F269747A500D66668 /* GameLogicMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CBB19E269747A500D66668 /* GameLogicMiddleware.swift */; };
 		1839F4B025190F2A00BB00F1 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1839F4AF25190F2A00BB00F1 /* AppMain.swift */; };
 		18D775C522AD944300AE281E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D775C422AD944300AE281E /* ContentView.swift */; };
 		18D775C722AD944400AE281E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D775C622AD944400AE281E /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		16CBB1932696E36000D66668 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		16CBB1962697023F00D66668 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		16CBB1982697051600D66668 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		16CBB19C2697467E00D66668 /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
+		16CBB19E269747A500D66668 /* GameLogicMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogicMiddleware.swift; sourceTree = "<group>"; };
 		1839F4AF25190F2A00BB00F1 /* AppMain.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; tabWidth = 4; };
 		18D775BD22AD944300AE281E /* ThreeDucks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreeDucks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D775C422AD944300AE281E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 				16CBB1932696E36000D66668 /* Store.swift */,
 				16CBB1962697023F00D66668 /* Actions.swift */,
 				16CBB1982697051600D66668 /* Reducer.swift */,
+				16CBB19C2697467E00D66668 /* Middleware.swift */,
+				16CBB19E269747A500D66668 /* GameLogicMiddleware.swift */,
 			);
 			indentWidth = 4;
 			path = State;
@@ -270,7 +276,9 @@
 				16CBB1942696E36000D66668 /* Store.swift in Sources */,
 				499C708D260C202F00BE1486 /* TitleScreenView.swift in Sources */,
 				495CB6482610424F00DC9D44 /* GameState.swift in Sources */,
+				16CBB19D2697467E00D66668 /* Middleware.swift in Sources */,
 				49107CCA26171D0100E85A59 /* QuackPlayer.swift in Sources */,
+				16CBB19F269747A500D66668 /* GameLogicMiddleware.swift in Sources */,
 				16CBB1972697023F00D66668 /* Actions.swift in Sources */,
 				49D3F03426183D45004D49D3 /* CardGridView.swift in Sources */,
 				4978903F2613374D00A5E9B8 /* GameWinScreenView.swift in Sources */,

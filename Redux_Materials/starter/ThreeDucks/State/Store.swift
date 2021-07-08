@@ -3,6 +3,7 @@
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
+import Combine
 
 typealias ThreeDucksStore = Store<ThreeDucksState, ThreeDucksAction>
 
@@ -16,9 +17,16 @@ class Store<State, Action>: ObservableObject {
         qos: .userInitiated
     )
     
-    init(initial: State, reducer: @escaping Reducer<State, Action>) {
+    private let middlewares: [Middleware<State, Action>]
+    
+    private var subscriptons: Set<AnyCancellable> = []
+    
+    init(initial: State,
+         reducer: @escaping Reducer<State, Action>,
+         middlewares: [Middleware<State, Action>] = []) {
         self.state = initial
         self.reducer = reducer
+        self.middlewares = middlewares
     }
     
     func dispatch(_ action: Action) {
@@ -30,5 +38,14 @@ class Store<State, Action>: ObservableObject {
     private func dispatch(_ currentState: State, _ action: Action) {
         let newState = reducer(currentState, action)
         state = newState
+        
+        middlewares.forEach { middleware in
+            let publisher = middleware(newState, action)
+            
+            publisher
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: dispatch)
+                .store(in: &subscriptons)
+        }
     }
 }
