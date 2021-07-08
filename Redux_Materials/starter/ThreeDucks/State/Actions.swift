@@ -10,4 +10,5 @@ enum ThreeDucksAction {
     case flipCard(UUID)
     case clearSelectedCards
     case unFlipSelectedCards
+    case winGame
 }

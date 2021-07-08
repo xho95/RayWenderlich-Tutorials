@@ -67,6 +67,9 @@ let threeDucksReducer: Reducer<ThreeDucksState, ThreeDucksAction> = { state, act
         
     case .clearSelectedCards:
         mutatingState.selectedCards = []
+        
+    case .winGame:
+        mutatingState.gameState = .won
     }
     
     return mutatingState

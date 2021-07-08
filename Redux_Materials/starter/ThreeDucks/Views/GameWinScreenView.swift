@@ -5,6 +5,8 @@
 import SwiftUI
 
 struct GameWinScreenView: View {
+    @EnvironmentObject var store: ThreeDucksStore
+    
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
             Spacer()
@@ -17,7 +19,7 @@ struct GameWinScreenView: View {
                 .aspectRatio(contentMode: .fit)
             
             Button("Go Again") {
-                // Action
+                store.dispatch(.endGame)
             }
             .font(.headline)
             .foregroundColor(.purple)

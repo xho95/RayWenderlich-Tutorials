@@ -8,6 +8,14 @@ import Combine
 let gameLogic: Middleware<ThreeDucksState, ThreeDucksAction> = { state, action in
     switch action {
     case .flipCard:
+        let flippedCards = state.cards.filter { $0.isFlipped }
+        
+        if flippedCards.count == state.cards.count {
+            return Just(.winGame)
+                .delay(for: 1, scheduler: DispatchQueue.main)
+                .eraseToAnyPublisher()
+        }
+        
         let selectedCards = state.selectedCards
         
         if selectedCards.count == 2 {
@@ -16,9 +24,11 @@ let gameLogic: Middleware<ThreeDucksState, ThreeDucksAction> = { state, action i
                     .eraseToAnyPublisher()
             } else {
                 return Just(.unFlipSelectedCards)
+                    .delay(for: 1, scheduler: DispatchQueue.main)
                     .eraseToAnyPublisher()
             }
         }
+        
     default:
         break
     }
