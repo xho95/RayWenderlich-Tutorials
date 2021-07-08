@@ -5,25 +5,14 @@
 import SwiftUI
 
 struct GameScreenView: View {
-    let cards = [
-        Card(animal: .bat),
-        Card(animal: .bat),
-        Card(animal: .ducks),
-        Card(animal: .ducks),
-        Card(animal: .bear),
-        Card(animal: .bear),
-        Card(animal: .pelican),
-        Card(animal: .pelican),
-        Card(animal: .horse),
-        Card(animal: .horse),
-        Card(animal: .elephant),
-        Card(animal: .elephant)
-    ].shuffled()
-    
+    @EnvironmentObject var store: ThreeDucksStore
+        
     var body: some View {
         VStack(alignment: .leading) {
             Button {
-                // Action
+                withAnimation {
+                    store.dispatch(.endGame)
+                }
             } label: {
                 HStack {
                     Image(systemName: "hand.point.left.fill")
@@ -33,7 +22,7 @@ struct GameScreenView: View {
             }
             .padding()
             Spacer()
-            CardGridView(cards: cards)
+            CardGridView(cards: store.state.cards)
                 .padding(8)
             
             Spacer()

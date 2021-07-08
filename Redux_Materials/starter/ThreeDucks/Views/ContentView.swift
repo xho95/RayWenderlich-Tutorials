@@ -22,6 +22,11 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(ThreeDucksStore(initial: ThreeDucksState(gameState: .title)))
+            .environmentObject(
+                ThreeDucksStore(
+                    initial: ThreeDucksState(gameState: .title),
+                    reducer: threeDucksReducer
+                )
+            )
     }
 }
