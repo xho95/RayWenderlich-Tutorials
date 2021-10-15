@@ -141,6 +141,25 @@ class PlayerViewModel: NSObject, ObservableObject {
     // MARK: - Private
     
     private func setupAudio() {
+        guard let fileURL = Bundle.main.url(forResource: "Intro", withExtension: "mp3") else {
+            return
+        }
+        
+        do {
+            let file = try AVAudioFile(forReading: fileURL)
+            let format = file.processingFormat
+            
+            audioLengthSamples = file.length
+            audioSampleRate = format.sampleRate
+            audioLengthSeconds = Double(audioLengthSeconds) / audioSampleRate
+            
+            audioFile = file
+            
+            configureEngine(with: format)
+        } catch {
+            print("Error reading the audio file: \(error.localizedDescription)")
+        }
+                
     }
     
     private func configureEngine(with format: AVAudioFormat) {
