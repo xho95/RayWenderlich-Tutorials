@@ -34,9 +34,9 @@ import SwiftUI
 
 @main
 struct AppMain: App {
-  var body: some Scene {
-    WindowGroup {
-      PlayerView()
+    var body: some Scene {
+        WindowGroup {
+            PlayerView()
+        }
     }
-  }
 }
