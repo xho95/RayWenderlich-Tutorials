@@ -133,6 +133,22 @@ class PlayerViewModel: NSObject, ObservableObject {
     }
     
     func playOrPause() {
+        isPlaying.toggle()
+        
+        if player.isPlaying {
+            displayLink?.isPaused = true
+            disconnectVolumeTap()
+            
+            player.pause()
+        } else {
+            displayLink?.isPaused = false
+            connectVolumeTap()
+            
+            if needsFileScheduled {
+                scheduleAudioFile()
+            }
+            player.play()
+        }
     }
     
     func skip(forwards: Bool) {
@@ -141,9 +157,7 @@ class PlayerViewModel: NSObject, ObservableObject {
     // MARK: - Private
     
     private func setupAudio() {
-        guard let fileURL = Bundle.main.url(forResource: "Intro", withExtension: "mp3") else {
-            return
-        }
+        guard let fileURL = Bundle.main.url(forResource: "Intro", withExtension: "mp3") else { return }
         
         do {
             let file = try AVAudioFile(forReading: fileURL)
@@ -159,13 +173,36 @@ class PlayerViewModel: NSObject, ObservableObject {
         } catch {
             print("Error reading the audio file: \(error.localizedDescription)")
         }
-                
     }
     
     private func configureEngine(with format: AVAudioFormat) {
+        engine.attach(player)
+        engine.attach(timeEffect)
+        
+        engine.connect(player, to: timeEffect, format: format)
+        engine.connect(timeEffect, to: engine.mainMixerNode, format: format)
+        
+        engine.prepare()
+        
+        do {
+            try engine.start()
+            
+            scheduleAudioFile()
+            isPlayerReady = true
+        } catch {
+            print("Error starting the player: \(error.localizedDescription)")
+        }
     }
     
     private func scheduleAudioFile() {
+        guard let file = audioFile, needsFileScheduled else { return }
+        
+        needsFileScheduled = false
+        seekFrame = 0
+        
+        player.scheduleFile(file, at: nil) {
+            self.needsFileScheduled = true
+        }
     }
     
     // MARK: Audio adjustments
@@ -194,8 +231,32 @@ class PlayerViewModel: NSObject, ObservableObject {
     // MARK: Display updates
     
     private func setupDisplayLink() {
+        displayLink = CADisplayLink(target: self, selector: #selector(updateDisplay))
+        displayLink?.add(to: .current, forMode: .default)
+        displayLink?.isPaused = true
     }
     
     @objc private func updateDisplay() {
+        currentPosition = currentFrame + seekFrame
+        currentPosition = max(currentPosition, 0)
+        currentPosition = min(currentPosition, audioLengthSamples)
+        
+        if currentPosition >= audioLengthSamples {
+            player.stop()
+            
+            seekFrame = 0
+            currentPosition = 0
+            
+            isPlaying = false
+            displayLink?.isPaused = true
+            
+            disconnectVolumeTap()
+        }
+        
+        playerProgress = Double(currentPosition) / Double(audioLengthSamples)
+        
+        let time = Double(currentPosition) / audioSampleRate
+        
+        playerTime = PlayerTime(elapsedTime: time, remainingTime: audioLengthSeconds - time)
     }
 }
