@@ -165,7 +165,7 @@ class PlayerViewModel: NSObject, ObservableObject {
             
             audioLengthSamples = file.length
             audioSampleRate = format.sampleRate
-            audioLengthSeconds = Double(audioLengthSeconds) / audioSampleRate
+            audioLengthSeconds = Double(audioLengthSamples) / audioSampleRate
             
             audioFile = file
             
