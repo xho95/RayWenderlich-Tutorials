@@ -219,13 +219,51 @@ class PlayerViewModel: NSObject, ObservableObject {
     // MARK: Audio metering
     
     private func scaledPower(power: Float) -> Float {
-        return 0
+        guard power.isFinite else { return 0.0 }
+        
+        let minDb: Float = -80
+        
+        if power < minDb {
+            return 0.0
+        } else if power >= 1.0 {
+            return 1.0
+        } else {
+            return (abs(minDb) - abs(power)) / abs(minDb)
+        }
     }
     
     private func connectVolumeTap() {
+        let format = engine.mainMixerNode.outputFormat(forBus: 0)
+        
+        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
+            guard let channelData = buffer.floatChannelData else { return }
+            
+            let channelDataValue = channelData.pointee  // Wow!! : UnsafePointer of something --> something
+            
+            let channelDataValueArray = stride(from: 0, to: Int(buffer.frameLength), by: buffer.stride)
+                .map { channelDataValue[$0] }           // UnsafeMutablePointer<Float> --> [Float]
+            
+            let rms = sqrt(channelDataValueArray        // Root Mean Square
+                            .map { return $0 * $0 }
+                            .reduce(0, +) / Float(buffer.frameLength)
+            )
+            
+            let avgPower = 20 * log10(rms)
+            
+            let meterLevel = self.scaledPower(power: avgPower)
+            
+            DispatchQueue.main.async {
+                self.meterLevel = self.isPlaying ? meterLevel : 0
+            }
+//            async let _ = {
+//                self.meterLevel = self.isPlaying ? meterLevel : 0
+//            }
+        }
     }
     
     private func disconnectVolumeTap() {
+        engine.mainMixerNode.removeTap(onBus: 0)
+        meterLevel = 0
     }
     
     // MARK: Display updates
