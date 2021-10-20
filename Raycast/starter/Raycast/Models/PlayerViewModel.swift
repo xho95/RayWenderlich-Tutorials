@@ -152,6 +152,15 @@ class PlayerViewModel: NSObject, ObservableObject {
     }
     
     func skip(forwards: Bool) {
+        let timeToSeek: Double
+
+        if forwards {
+            timeToSeek = 10
+        } else {
+            timeToSeek = -10
+        }
+        
+        seek(to: timeToSeek)
     }
     
     // MARK: - Private
@@ -208,12 +217,41 @@ class PlayerViewModel: NSObject, ObservableObject {
     // MARK: Audio adjustments
     
     private func seek(to time: Double) {
+        guard let audioFile = audioFile else { return }
+        
+        let offset = AVAudioFramePosition(time * audioSampleRate)
+        seekFrame = currentPosition + offset
+        seekFrame = max(seekFrame, 0)
+        seekFrame = min(seekFrame, audioLengthSamples)
+        currentPosition = seekFrame
+        
+        let wasPlaying = player.isPlaying
+        player.stop()
+        
+        if currentPosition < audioLengthSamples {
+            updateDisplay()
+            needsFileScheduled = false
+            
+            let frameCount = AVAudioFrameCount(audioLengthSamples - seekFrame)
+            
+            player.scheduleSegment(audioFile, startingFrame: seekFrame, frameCount: frameCount, at: nil) {
+                self.needsFileScheduled = true
+            }
+            
+            if wasPlaying {
+                player.play()
+            }
+        }
     }
     
     private func updateForRateSelection() {
+        let selectedRate = allPlaybackRates[playbackRateIndex]
+        timeEffect.rate = Float(selectedRate.value)
     }
     
     private func updateForPitchSelection() {
+        let selectedPitch = allPlaybackPitches[playbackPitchIndex]
+        timeEffect.pitch = 1200 * Float(selectedPitch.value)            // An octave is equal to 1200 cents
     }
     
     // MARK: Audio metering
