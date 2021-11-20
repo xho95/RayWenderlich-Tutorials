@@ -30,6 +30,9 @@ import SwiftUI
 
 struct SplashScreen: View {
     let fuberBlue = Color("Fuber blue")
+    let uLineWidth = CGFloat(5.5)
+    
+    @State var percent = 0.0
     
     var body: some View {
         ZStack {
@@ -39,11 +42,56 @@ struct SplashScreen: View {
                 .offset(x: 20,
                         y: 0)
             
+            FuberU(percent: percent)
+                .stroke(Color.white, lineWidth: uLineWidth)
+                .onAppear {
+                    self.handleAnimations()
+                }
+                .frame(width: 45, height: 45)
+            
             Spacer()
                 .frame(minWidth: .zero, maxWidth: .infinity, minHeight: .zero, maxHeight: .infinity)
         }
         .background(fuberBlue)
         .edgesIgnoringSafeArea(.all)
+    }
+}
+
+extension SplashScreen {
+    var uAnimationDuration: Double {
+        return 1.0
+    }
+    
+    func handleAnimations() {
+        runAnimationPart1()
+    }
+    
+    func runAnimationPart1() {
+        withAnimation(.easeIn(duration: uAnimationDuration)) {
+            percent = 1
+        }
+    }
+}
+
+struct FuberU: Shape {
+    var percent: Double
+    
+    func path(in rect: CGRect) -> Path {
+        let end = percent * 360
+        var path = Path()
+        
+        path.addArc(center: CGPoint(x: rect.size.width/2, y: rect.size.height/2),
+                    radius: rect.size.width/2,
+                    startAngle: Angle(degrees: 0),
+                    endAngle: Angle(degrees: end),
+                    clockwise: false)
+        
+        return path
+    }
+    
+    var animatableData: Double {
+        get { return percent }
+        set { percent = newValue}
     }
 }
 
