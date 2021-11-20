@@ -29,27 +29,28 @@
 import SwiftUI
 
 struct SplashScreen: View {
-  let fuberBlue = Color("Fuber blue")
-  
-  var body: some View {
-    ZStack {
-      Text("F           BER")
-        .font(.largeTitle)
-        .foregroundColor(.white)
-        .offset(x: 20,
-                y: 0)
-      
-      Spacer()
+    let fuberBlue = Color("Fuber blue")
+    
+    var body: some View {
+        ZStack {
+            Text("F           BER")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+                .offset(x: 20,
+                        y: 0)
+            
+            Spacer()
+                .frame(minWidth: .zero, maxWidth: .infinity, minHeight: .zero, maxHeight: .infinity)
+        }
+        .background(fuberBlue)
+        .edgesIgnoringSafeArea(.all)
     }
-    .background(fuberBlue)
-    .edgesIgnoringSafeArea(.all)
-  }
 }
-  
+
 #if DEBUG
 struct SplashScreen_Previews : PreviewProvider {
-  static var previews: some View {
-    SplashScreen()
-  }
+    static var previews: some View {
+        SplashScreen()
+    }
 }
 #endif

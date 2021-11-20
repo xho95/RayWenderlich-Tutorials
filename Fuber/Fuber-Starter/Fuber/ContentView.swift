@@ -30,29 +30,29 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-  @State var showSplash = true
-  
-  var body: some View {
-    ZStack{
-      MapView(coordinate: CLLocationCoordinate2DMake(37.331820, -122.03118))
-        .edgesIgnoringSafeArea(.all)
-      SplashScreen()
-        .opacity(showSplash ? 1 : 0)
-        .onAppear {
-          DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            withAnimation() {
-              self.showSplash = false
-            }
-          }
-      }
+    @State var showSplash = true
+    
+    var body: some View {
+        ZStack{
+            MapView(coordinate: CLLocationCoordinate2DMake(37.331820, -122.03118))
+                .edgesIgnoringSafeArea(.all)
+            SplashScreen()
+                .opacity(showSplash ? 1 : 0)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation() {
+                            self.showSplash = false
+                        }
+                    }
+                }
+        }
     }
-  }
 }
 
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+    static var previews: some View {
+        ContentView()
+    }
 }
 #endif
