@@ -30,10 +30,18 @@ import SwiftUI
 
 struct SplashScreen: View {
     let fuberBlue = Color("Fuber blue")
-    let uLineWidth = CGFloat(5.5)
-    
+    let uLineWidth = CGFloat(5)
+    let uZoomFactor = CGFloat(1.4)
+    let squareLength = CGFloat(12)
+    let lineWidth = CGFloat(4)
+    let lineHeight = CGFloat(28)
+
     @State var percent = 0.0
-    
+    @State var uScale = CGFloat(1.0)
+    @State var squareColor = Color.white
+    @State var squareScale = CGFloat(1.0)
+    @State var lineScale = CGFloat(1.0)
+
     var body: some View {
         ZStack {
             Text("F           BER")
@@ -44,11 +52,29 @@ struct SplashScreen: View {
             
             FuberU(percent: percent)
                 .stroke(Color.white, lineWidth: uLineWidth)
+                .rotationEffect(.degrees(-90))
+                .aspectRatio(1, contentMode: .fit)
+                .padding(20)                            // what does this mean?
+                .scaleEffect(uScale * uZoomFactor)
+                .frame(width: 45, height: 45)
                 .onAppear {
                     self.handleAnimations()
                 }
-                .frame(width: 45, height: 45)
             
+            Rectangle()
+                .fill(squareColor)
+                .scaleEffect(squareScale * uZoomFactor)
+                .frame(width: squareLength, height: squareLength)
+                .onAppear {
+                    self.squareColor = self.fuberBlue
+                }
+
+            Rectangle()
+                .fill(fuberBlue)
+                .scaleEffect(lineScale, anchor: .bottom)
+                .frame(width: lineWidth, height: lineHeight)
+                .offset(x: 0, y: -22)
+
             Spacer()
                 .frame(minWidth: .zero, maxWidth: .infinity, minHeight: .zero, maxHeight: .infinity)
         }
@@ -64,11 +90,22 @@ extension SplashScreen {
     
     func handleAnimations() {
         runAnimationPart1()
+        restartAnimation()
     }
     
     func runAnimationPart1() {
         withAnimation(.easeIn(duration: uAnimationDuration)) {
             percent = 1
+            uScale = 5
+        }
+    }
+    
+    func restartAnimation() {
+        let deadline: DispatchTime = .now() + uAnimationDuration
+        
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.percent = 0
+            self.handleAnimations()
         }
     }
 }
@@ -80,7 +117,7 @@ struct FuberU: Shape {
         let end = percent * 360
         var path = Path()
         
-        path.addArc(center: CGPoint(x: rect.size.width/2, y: rect.size.height/2),
+        path.addArc(center: CGPoint(x: rect.size.width/2, y: rect.size.width/2),
                     radius: rect.size.width/2,
                     startAngle: Angle(degrees: 0),
                     endAngle: Angle(degrees: end),
