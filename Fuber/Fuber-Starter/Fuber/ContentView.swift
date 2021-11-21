@@ -39,11 +39,12 @@ struct ContentView: View {
             SplashScreen()
                 .opacity(showSplash ? 1 : 0)
                 .onAppear {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                        withAnimation() {
-//                            self.showSplash = false
-//                        }
-//                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        SplashScreen.shouldAnimate = false
+                        withAnimation() {
+                            self.showSplash = false
+                        }
+                    }
                 }
         }
     }

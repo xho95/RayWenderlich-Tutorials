@@ -100,6 +100,8 @@ struct SplashScreen: View {
 }
 
 extension SplashScreen {
+    static var shouldAnimate = true
+    
     var uAnimationDuration: Double { return 1.0 }
     var uAnimationDelay: Double { return 0.2 }
     var uExitAnimationDuration: Double { return 0.3 }
@@ -112,7 +114,10 @@ extension SplashScreen {
         runAnimationPart1()
         runAnimationPart2()
         runAnimationPart3()
-        restartAnimation()
+        
+        if SplashScreen.shouldAnimate {
+            restartAnimation()
+        }
     }
     
     func runAnimationPart1() {
