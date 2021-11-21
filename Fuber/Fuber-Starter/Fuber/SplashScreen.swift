@@ -41,14 +41,30 @@ struct SplashScreen: View {
     @State var squareColor = Color.white
     @State var squareScale = CGFloat(1.0)
     @State var lineScale = CGFloat(1.0)
+    @State var textAlpha = 0.0
+    @State var textScale = CGFloat(1.0)
+    @State var coverCircleAlpha = 0.0
+    @State var coverCircleScale = CGFloat(1.0)
 
     var body: some View {
         ZStack {
+            Image("Chimes")
+                .resizable(resizingMode: .tile)
+                .opacity(textAlpha)
+                .scaleEffect(textScale)
+            
+            Circle()
+                .fill(fuberBlue)
+                .frame(width: 1, height: 1)
+                .scaleEffect(coverCircleScale)
+                .opacity(coverCircleAlpha)
+            
             Text("F           BER")
                 .font(.largeTitle)
                 .foregroundColor(.white)
-                .offset(x: 20,
-                        y: 0)
+                .opacity(textAlpha)
+                .offset(x: 20, y: 0)
+                .scaleEffect(textScale)
             
             FuberU(percent: percent)
                 .stroke(Color.white, lineWidth: uLineWidth)
@@ -107,6 +123,10 @@ extension SplashScreen {
             lineScale = 1
         }
         
+        withAnimation(.easeIn(duration: uAnimationDuration).delay(0.5)) {
+            textAlpha = 1.0
+        }
+        
         let deadline: DispatchTime = .now() + uAnimationDuration + uAnimationDelay
         
         DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -114,8 +134,13 @@ extension SplashScreen {
                 self.uScale = 0
                 self.lineScale = 0
             }
+            
             withAnimation(.easeOut(duration: self.minAnimationInterval)) {
                 self.squareScale = 0
+            }
+            
+            withAnimation(.spring()) {
+                self.textScale = self.uZoomFactor
             }
         }
     }
@@ -126,6 +151,11 @@ extension SplashScreen {
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             self.squareColor = Color.white
             self.squareScale = 1
+            
+            withAnimation(.easeOut(duration: self.fadeAnimationDuration)) {
+                self.coverCircleAlpha = 1
+                self.coverCircleScale = 1000
+            }
         }
     }
     
@@ -133,6 +163,7 @@ extension SplashScreen {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2 * uAnimationDuration) {
             withAnimation(.easeIn(duration: self.finalAnimationDuration)) {
                 self.squareColor = self.fuberBlue
+                self.textAlpha = 0
             }
         }
     }
@@ -142,6 +173,9 @@ extension SplashScreen {
         
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             self.percent = 0
+            self.textScale = 1
+            self.coverCircleAlpha = 0
+            self.coverCircleScale = 1
             self.handleAnimations()
         }
     }
