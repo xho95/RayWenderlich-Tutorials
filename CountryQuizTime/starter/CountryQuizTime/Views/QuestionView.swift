@@ -68,7 +68,11 @@ struct QuestionView: View {
     private func optionButton(_ option: String) -> some View {
         Button(option) {
             let isCorrect = quiz.checkQuestion(question: question, choice: option)
-            message = isCorrect ? "correctly" : "incorrectly"
+            
+            message = isCorrect ?
+                String(localized: "correctly", comment: "Correct message") :
+                String(localized: "incorrectly", comment: "Incorrect message")
+            
             showResult.toggle()
         }
         .buttonStyle(QuizButtonStyle())
@@ -90,7 +94,17 @@ struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionView(question: Question.mockQuestion)
             .environmentObject(Quiz())
+            .environment(\.locale, .init(identifier: "en"))
+            .previewLayout(.sizeThatFits)
+
         QuestionView(question: Question.mockQuestion)
             .environmentObject(Quiz())
+            .environment(\.locale, .init(identifier: "ko"))
+            .previewLayout(.sizeThatFits)
+
+        QuestionView(question: Question.mockQuestion)
+            .environmentObject(Quiz())
+            .environment(\.locale, .init(identifier: "es"))
+            .previewLayout(.sizeThatFits)
     }
 }

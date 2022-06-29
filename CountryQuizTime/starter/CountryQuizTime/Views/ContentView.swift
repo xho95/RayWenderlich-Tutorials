@@ -38,10 +38,20 @@ struct ContentView: View {
     @State private var showResult = false
     
     private var scoreMessage: String {
-        let localizedString = NSLocalizedString("points-count %lld", comment: "The pluralized score")
-        return String(format: localizedString, quiz.score)
+        String(localized: "points-count \(quiz.score)",
+               comment: "The pluralized score")
     }
     
+//    private var oldTitle: String {
+//        String(localized: "Welcome to Country Quiz Time",
+//               comment: "App welcome title")
+//    }
+
+    private var appTitle: AttributedString {
+        AttributedString(localized: "Welcome to _Country Quiz Time_",
+                         comment: "App welcome title")
+    }
+
     var body: some View {
         ScrollView {
             content
@@ -67,7 +77,8 @@ struct ContentView: View {
     
     private var titleView: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("Welcome to Country Quiz Time")
+            Text(appTitle)
+//            Text("Welcome to _Country Quiz Time_", comment: "App welcome title")
                 .font(.largeTitle)
                 .foregroundColor(Color("Region"))
             Divider()
@@ -96,7 +107,16 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView(quiz: Quiz())
+                .environment(\.locale, .init(identifier: "en"))
+                .previewLayout(.sizeThatFits)
+
             ContentView(quiz: Quiz())
+                .environment(\.locale, .init(identifier: "ko"))
+                .previewLayout(.sizeThatFits)
+
+            ContentView(quiz: Quiz())
+                .environment(\.locale, .init(identifier: "es"))
+                .previewLayout(.sizeThatFits)
         }
     }
 }

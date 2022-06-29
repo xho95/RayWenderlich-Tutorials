@@ -41,28 +41,28 @@ struct Question: Equatable {
 extension Question {
     static var mockQuestion: Question {
         Question(
-            title: NSLocalizedString("Mexico.Question", comment: ""),
-            options: optionsFrom(NSLocalizedString("Mexico.Choices", comment: "")),
-            answer: NSLocalizedString("Mexico.Answer", comment: "")
+            title: String(localized: "Mexico.Question", comment: ""),
+            options: optionsFrom(String(localized: "Mexico.Choices", comment: "")),
+            answer: String(localized: "Mexico.Answer", comment: "")
         )
     }
     
     static func questions() -> [Question] {
         return [
             Question(
-                title: NSLocalizedString("Mexico.Question", comment: ""),
-                options: optionsFrom(NSLocalizedString("Mexico.Choices", comment: "")),
-                answer: NSLocalizedString("Mexico.Answer", comment: "")
+                title: String(localized: "Mexico.Question", comment: ""),
+                options: optionsFrom(String(localized: "Mexico.Choices", comment: "")),
+                answer: String(localized: "Mexico.Answer", comment: "")
             ),
             Question(
-                title: NSLocalizedString("Catalan.Question", comment: ""),
-                options: optionsFrom(NSLocalizedString("Catalan.Choices", comment: "")),
-                answer: NSLocalizedString("Catalan.Answer", comment: "")
+                title: String(localized: "Catalan.Question", comment: ""),
+                options: optionsFrom(String(localized: "Catalan.Choices", comment: "")),
+                answer: String(localized: "Catalan.Answer", comment: "")
             ),
             Question(
-                title: NSLocalizedString("DC.Question", comment: ""),
-                options: optionsFrom(NSLocalizedString("DC.Choices", comment: "")),
-                answer: NSLocalizedString("DC.Answer", comment: ""))
+                title: String(localized: "DC.Question", comment: ""),
+                options: optionsFrom(String(localized: "DC.Choices", comment: "")),
+                answer: String(localized: "DC.Answer", comment: ""))
         ]
     }
     

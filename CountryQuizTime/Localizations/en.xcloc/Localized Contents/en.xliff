@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="CountryQuizTime/en.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4.1" build-num="13F100"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>Country Quiz</source>
+        <target>Country Quiz</target>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>CountryQuizTime</source>
+        <target>CountryQuizTime</target>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="CountryQuizTime/en.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4.1" build-num="13F100"/>
+    </header>
+    <body>
+      <trans-unit id="Catalan.Answer" xml:space="preserve">
+        <source>Catalan</source>
+        <target>Catalan</target>
+        <note>Answer for question about Catalan</note>
+      </trans-unit>
+      <trans-unit id="Catalan.Choices" xml:space="preserve">
+        <source>Spanish;Catalan;French;Portuguese;Italian</source>
+        <target>Spanish;Catalan;French;Portuguese;Italian</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Catalan.Question" xml:space="preserve">
+        <source>Which language is spoken in Andorra?</source>
+        <target>Which language is spoken in Andorra?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DC.Answer" xml:space="preserve">
+        <source>Washington D.C.</source>
+        <target>Washington D.C.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DC.Choices" xml:space="preserve">
+        <source>New York City;San Francisco;Atlanta;Washington D.C.;Dallas;Los Angeles</source>
+        <target>New York City;San Francisco;Atlanta;Washington D.C.;Dallas;Los Angeles</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DC.Question" xml:space="preserve">
+        <source>What is the capital of the United States?</source>
+        <target>What is the capital of the United States?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mexico.Answer" xml:space="preserve">
+        <source>September 16</source>
+        <target>September 16</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mexico.Choices" xml:space="preserve">
+        <source>January 5;February 24;March 21;May 5;September 16;November 1;November 20</source>
+        <target>January 5;February 24;March 21;May 5;September 16;November 1;November 20</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mexico.Question" xml:space="preserve">
+        <source>What day is Mexican Independence Day?</source>
+        <target>What day is Mexican Independence Day?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="points-count %lld" translate="no" xml:space="preserve">
+        <source>points-count %lld</source>
+        <target>points-count %lld</target>
+        <note>The pluralized score (Key in .stringsdict)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="CountryQuizTime/en.lproj/Localizable.stringsdict" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4.1" build-num="13F100"/>
+    </header>
+    <body>
+      <trans-unit id="/points-count %lld:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@points@</source>
+        <target>%#@points@</target>
+        <note>The pluralized score</note>
+      </trans-unit>
+      <trans-unit id="/points-count %lld:dict/points:dict/one:dict/:string" xml:space="preserve">
+        <source>%lld point</source>
+        <target>%lld point</target>
+        <note>The pluralized score</note>
+      </trans-unit>
+      <trans-unit id="/points-count %lld:dict/points:dict/other:dict/:string" xml:space="preserve">
+        <source>%lld points</source>
+        <target>%lld points</target>
+        <note>The pluralized score</note>
+      </trans-unit>
+      <trans-unit id="/points-count %lld:dict/points:dict/zero:dict/:string" xml:space="preserve">
+        <source>0</source>
+        <target>0</target>
+        <note>The pluralized score</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
