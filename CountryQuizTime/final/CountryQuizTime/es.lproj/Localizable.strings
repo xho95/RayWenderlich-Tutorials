@@ -1,0 +1,44 @@
+/* Answer for question about Catalan */
+"Catalan.Answer" = "Catalán";
+
+/* No comment provided by engineer. */
+"Catalan.Choices" = "Español;Catalán;Francés;Portugués;Italiano";
+
+/* No comment provided by engineer. */
+"Catalan.Question" = "¿Qué idioma se habla en Andorra?";
+
+/* Correct message */
+"correctly" = "correctamente";
+
+/* No comment provided by engineer. */
+"DC.Answer" = "Washington D.C.";
+
+/* No comment provided by engineer. */
+"DC.Choices" = "New York;San Francisco;Atlanta;Washington D.C.;Dallas;Los Angeles";
+
+/* No comment provided by engineer. */
+"DC.Question" = "Cual es la capital de los Estados Unidos?";
+
+/* Incorrect message */
+"incorrectly" = "incorrectamente";
+
+/* No comment provided by engineer. */
+"Mexico.Answer" = "16 de septiembre";
+
+/* No comment provided by engineer. */
+"Mexico.Choices" = "5 de enero;24 de febrero;21 de marzo;5 de Mayo;16 de septiembre;1 de noviembre;20 de noviembre";
+
+/* No comment provided by engineer. */
+"Mexico.Question" = "¿Qué día es el Día de la Independencia de México?";
+
+/* No comment provided by engineer. */
+"Next" = "Contiguo";
+
+/* Persistent score message */
+"Score: %lld" = "**Resultado:** ^[%lld puntos](inflect: true)";
+
+/* App welcome title */
+"Welcome to _Country Quiz Time_" = "^[Bienvenido](inflect: true, inflectionAlternative:'Te damos la bienvenida') a _Country Quiz Time_";
+
+/* No comment provided by engineer. */
+"You answered %@" = "Respondiste %@";
