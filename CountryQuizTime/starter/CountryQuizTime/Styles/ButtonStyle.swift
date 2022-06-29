@@ -33,42 +33,42 @@
 import SwiftUI
 
 enum ButtonConstants {
-  static let cornerRadius: CGFloat = 4.0
-  static let lineWidth: CGFloat = 1.0
-  static let clipShape = RoundedRectangle(cornerRadius: ButtonConstants.cornerRadius)
+    static let cornerRadius: CGFloat = 4.0
+    static let lineWidth: CGFloat = 1.0
+    static let clipShape = RoundedRectangle(cornerRadius: ButtonConstants.cornerRadius)
 }
 
 struct QuizButtonStyle: ButtonStyle {
-  func makeBody(configuration: Configuration) -> some View {
-    HStack {
-      Spacer()
-      configuration.label
-        .font(.body.bold())
-      Spacer()
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            Spacer()
+            configuration.label
+                .font(.body.bold())
+            Spacer()
+        }
+        .padding()
+        .foregroundColor(.white)
+        .background(configuration.isPressed ? Color.blue.opacity(0.4) : Color.blue)
+        .overlay(
+            RoundedRectangle(cornerRadius: ButtonConstants.cornerRadius)
+                .stroke(Color.blue, lineWidth: ButtonConstants.lineWidth)
+        )
+        .clipShape(ButtonConstants.clipShape)
     }
-    .padding()
-    .foregroundColor(.white)
-    .background(configuration.isPressed ? Color.blue.opacity(0.4) : Color.blue)
-    .overlay(
-      RoundedRectangle(cornerRadius: ButtonConstants.cornerRadius)
-        .stroke(Color.blue, lineWidth: ButtonConstants.lineWidth)
-    )
-    .clipShape(ButtonConstants.clipShape)
-  }
 }
 
 struct ActionButtonStyle: ButtonStyle {
-  func makeBody(configuration: Configuration) -> some View {
-    configuration.label
-      .font(.caption.bold())
-      .padding(.horizontal, 8)
-      .padding(.vertical, 4)
-      .background(configuration.isPressed ? Color.red.opacity(0.4) : Color.red)
-      .foregroundColor(.white)
-      .overlay(
-        RoundedRectangle(cornerRadius: ButtonConstants.cornerRadius)
-          .stroke(Color.red, lineWidth: ButtonConstants.lineWidth)
-      )
-      .clipShape(ButtonConstants.clipShape)
-  }
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.caption.bold())
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(configuration.isPressed ? Color.red.opacity(0.4) : Color.red)
+            .foregroundColor(.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: ButtonConstants.cornerRadius)
+                    .stroke(Color.red, lineWidth: ButtonConstants.lineWidth)
+            )
+            .clipShape(ButtonConstants.clipShape)
+    }
 }

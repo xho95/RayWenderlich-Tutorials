@@ -53,9 +53,9 @@
 				18D775BF22AD944300AE281E /* CountryQuizTime */,
 				18D775BE22AD944300AE281E /* Products */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		18D775BE22AD944300AE281E /* Products */ = {
 			isa = PBXGroup;
@@ -374,7 +374,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "CountryQuizTime/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6U792A794H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CountryQuizTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -395,7 +395,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "CountryQuizTime/Preview\\ Content";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6U792A794H;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CountryQuizTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

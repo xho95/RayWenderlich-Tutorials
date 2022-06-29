@@ -33,68 +33,70 @@
 import SwiftUI
 
 struct ContentView: View {
-  @ObservedObject var quiz: Quiz
-  @State private var showResult = false
-  private var scoreMessage: String {
-    let localizedString = NSLocalizedString("points-count %lld", comment: "The pluralized score")
-    return String(format: localizedString, quiz.score)
-  }
-
-  var body: some View {
-    ScrollView {
-      content
+    @ObservedObject var quiz: Quiz
+    
+    @State private var showResult = false
+    
+    private var scoreMessage: String {
+        let localizedString = NSLocalizedString("points-count %lld", comment: "The pluralized score")
+        return String(format: localizedString, quiz.score)
     }
-    .alert("Finished. You scored \(scoreMessage)", isPresented: $quiz.finished) {
-      nextButton
+    
+    var body: some View {
+        ScrollView {
+            content
+        }
+        .alert("Finished. You scored \(scoreMessage)", isPresented: $quiz.finished) {
+            nextButton
+        }
     }
-  }
-
-  private var content: some View {
-    VStack(alignment: .leading) {
-      titleView
-      if let question = quiz.activeQuestion {
-        QuestionView(question: question)
-          .environmentObject(quiz)
-      }
-      Divider()
-      scoreView
-      Spacer()
+    
+    private var content: some View {
+        VStack(alignment: .leading) {
+            titleView
+            if let question = quiz.activeQuestion {
+                QuestionView(question: question)
+                    .environmentObject(quiz)
+            }
+            Divider()
+            scoreView
+            Spacer()
+        }
+        .padding()
     }
-    .padding()
-  }
-
-  private var titleView: some View {
-    VStack(alignment: .leading, spacing: 2) {
-      Text("Welcome to Country Quiz Time")
-        .font(.largeTitle)
-        .foregroundColor(Color("Region"))
-      Divider()
+    
+    private var titleView: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text("Welcome to Country Quiz Time")
+                .font(.largeTitle)
+                .foregroundColor(Color("Region"))
+            Divider()
+        }
     }
-  }
-
-  private var scoreView: some View {
-    HStack {
-      Text("Score: \(quiz.score)")
-      Spacer()
-      Button("Reset", role: .destructive) {
-        quiz.reset()
-      }
-      .buttonStyle(ActionButtonStyle())
+    
+    private var scoreView: some View {
+        HStack {
+            Text("Score: \(quiz.score)")
+            Spacer()
+            Button("Reset", role: .destructive) {
+                quiz.reset()
+            }
+            .buttonStyle(ActionButtonStyle())
+        }
     }
-  }
-
-  private var nextButton: some View {
-    Button("Next", role: .cancel) {
-      quiz.reset()
+    
+    private var nextButton: some View {
+        Button("Next", role: .cancel) {
+            quiz.reset()
+        }
     }
-  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      ContentView(quiz: Quiz())
-      ContentView(quiz: Quiz())
+    static var previews: some View {
+        Group {
+            ContentView(quiz: Quiz())
+            ContentView(quiz: Quiz())
+        }
     }
-  }
 }

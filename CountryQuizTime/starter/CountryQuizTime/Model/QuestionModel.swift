@@ -33,40 +33,40 @@
 import Foundation
 
 struct Question: Equatable {
-  let title: String
-  let options: [String]
-  let answer: String
+    let title: String
+    let options: [String]
+    let answer: String
 }
 
 extension Question {
-  static var mockQuestion: Question {
-    Question(
-      title: NSLocalizedString("Mexico.Question", comment: ""),
-      options: optionsFrom(NSLocalizedString("Mexico.Choices", comment: "")),
-      answer: NSLocalizedString("Mexico.Answer", comment: "")
-    )
-  }
-
-  static func questions() -> [Question] {
-    return [
-      Question(
-        title: NSLocalizedString("Mexico.Question", comment: ""),
-        options: optionsFrom(NSLocalizedString("Mexico.Choices", comment: "")),
-        answer: NSLocalizedString("Mexico.Answer", comment: "")
-      ),
-      Question(
-        title: NSLocalizedString("Catalan.Question", comment: ""),
-        options: optionsFrom(NSLocalizedString("Catalan.Choices", comment: "")),
-        answer: NSLocalizedString("Catalan.Answer", comment: "")
-      ),
-      Question(
-        title: NSLocalizedString("DC.Question", comment: ""),
-        options: optionsFrom(NSLocalizedString("DC.Choices", comment: "")),
-        answer: NSLocalizedString("DC.Answer", comment: ""))
-    ]
-  }
-
-  private static func optionsFrom(_ localizedString: String) -> [String] {
-    localizedString.components(separatedBy: ";")
-  }
+    static var mockQuestion: Question {
+        Question(
+            title: NSLocalizedString("Mexico.Question", comment: ""),
+            options: optionsFrom(NSLocalizedString("Mexico.Choices", comment: "")),
+            answer: NSLocalizedString("Mexico.Answer", comment: "")
+        )
+    }
+    
+    static func questions() -> [Question] {
+        return [
+            Question(
+                title: NSLocalizedString("Mexico.Question", comment: ""),
+                options: optionsFrom(NSLocalizedString("Mexico.Choices", comment: "")),
+                answer: NSLocalizedString("Mexico.Answer", comment: "")
+            ),
+            Question(
+                title: NSLocalizedString("Catalan.Question", comment: ""),
+                options: optionsFrom(NSLocalizedString("Catalan.Choices", comment: "")),
+                answer: NSLocalizedString("Catalan.Answer", comment: "")
+            ),
+            Question(
+                title: NSLocalizedString("DC.Question", comment: ""),
+                options: optionsFrom(NSLocalizedString("DC.Choices", comment: "")),
+                answer: NSLocalizedString("DC.Answer", comment: ""))
+        ]
+    }
+    
+    private static func optionsFrom(_ localizedString: String) -> [String] {
+        localizedString.components(separatedBy: ";")
+    }
 }

@@ -33,36 +33,35 @@
 import Foundation
 
 class Quiz: ObservableObject {
-  @Published private(set) var score = 0
-  @Published var activeQuestion: Question?
-  @Published var finished = false
-  let questions: [Question]
-
-  init() {
-    self.questions = Question.questions()
-    activeQuestion = questions.first ?? Question.mockQuestion
-  }
-
-  func reset() {
-    score = 0
-    activeQuestion = questions.first
-  }
-
-  func checkQuestion(question: Question, choice: String) -> Bool {
-    guard question.answer == choice else { return false }
-    score += 1
-    return true
-  }
-
-  func nextQuestion() {
-    guard
-      let activeQuestion = activeQuestion,
-      let index = questions.firstIndex(where: { $0 == activeQuestion }),
-      questions.count > index + 1
-    else {
-      finished = true
-      return
+    @Published private(set) var score = 0
+    @Published var activeQuestion: Question?
+    @Published var finished = false
+    let questions: [Question]
+    
+    init() {
+        self.questions = Question.questions()
+        activeQuestion = questions.first ?? Question.mockQuestion
     }
-    self.activeQuestion = questions[index + 1]
-  }
+    
+    func reset() {
+        score = 0
+        activeQuestion = questions.first
+    }
+    
+    func checkQuestion(question: Question, choice: String) -> Bool {
+        guard question.answer == choice else { return false }
+        score += 1
+        return true
+    }
+    
+    func nextQuestion() {
+        guard
+            let activeQuestion = activeQuestion,
+            let index = questions.firstIndex(where: { $0 == activeQuestion }), questions.count > index + 1
+        else {
+            finished = true
+            return
+        }
+        self.activeQuestion = questions[index + 1]
+    }
 }

@@ -34,10 +34,11 @@ import SwiftUI
 
 @main
 struct AppMain: App {
-  @StateObject var quiz = Quiz()
-  var body: some Scene {
-    WindowGroup {
-      ContentView(quiz: quiz)
+    @StateObject var quiz = Quiz()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView(quiz: quiz)
+        }
     }
-  }
 }

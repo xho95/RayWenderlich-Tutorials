@@ -33,62 +33,64 @@
 import SwiftUI
 
 struct QuestionView: View {
-  var question: Question
-  @EnvironmentObject var quiz: Quiz
-  @State private var showResult = false
-  @State private var selection = ""
-  @State private var message = ""
-
-  var body: some View {
-    VStack(alignment: .leading) {
-      titleView
-      optionsView
+    var question: Question
+    
+    @EnvironmentObject var quiz: Quiz
+    
+    @State private var showResult = false
+    @State private var selection = ""
+    @State private var message = ""
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            titleView
+            optionsView
+        }
+        .alert("Result", isPresented: $showResult) {
+            nextButton
+        } message: {
+            messageView
+        }
     }
-    .alert("Result", isPresented: $showResult) {
-      nextButton
-    } message: {
-      messageView
+    
+    private var titleView: some View {
+        Text(question.title)
+            .font(.title2.bold())
+            .fixedSize(horizontal: false, vertical: true)
     }
-  }
-
-  private var titleView: some View {
-    Text(question.title)
-      .font(.title2.bold())
-      .fixedSize(horizontal: false, vertical: true)
-  }
-
-  private var optionsView: some View {
-    ForEach(question.options, id: \.self) { option in
-      optionButton(option)
+    
+    private var optionsView: some View {
+        ForEach(question.options, id: \.self) { option in
+            optionButton(option)
+        }
     }
-  }
-
-  private func optionButton(_ option: String) -> some View {
-    Button(option) {
-      let isCorrect = quiz.checkQuestion(question: question, choice: option)
-      message = isCorrect ? "correctly" : "incorrectly"
-      showResult.toggle()
+    
+    private func optionButton(_ option: String) -> some View {
+        Button(option) {
+            let isCorrect = quiz.checkQuestion(question: question, choice: option)
+            message = isCorrect ? "correctly" : "incorrectly"
+            showResult.toggle()
+        }
+        .buttonStyle(QuizButtonStyle())
     }
-    .buttonStyle(QuizButtonStyle())
-  }
-
-  private var nextButton: some View {
-    Button("Next", role: .cancel) {
-      quiz.nextQuestion()
-      selection = ""
+    
+    private var nextButton: some View {
+        Button("Next", role: .cancel) {
+            quiz.nextQuestion()
+            selection = ""
+        }
     }
-  }
-
-  private var messageView: some View {
-    Text("You answered \(message)")
-  }
+    
+    private var messageView: some View {
+        Text("You answered \(message)")
+    }
 }
 
 struct QuestionView_Previews: PreviewProvider {
-  static var previews: some View {
-    QuestionView(question: Question.mockQuestion)
-      .environmentObject(Quiz())
-    QuestionView(question: Question.mockQuestion)
-      .environmentObject(Quiz())
-  }
+    static var previews: some View {
+        QuestionView(question: Question.mockQuestion)
+            .environmentObject(Quiz())
+        QuestionView(question: Question.mockQuestion)
+            .environmentObject(Quiz())
+    }
 }
